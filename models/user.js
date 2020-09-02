@@ -8,7 +8,7 @@ let emailLengthChecker = (email) => {
     if (!email) {
         return false;
     } else {
-        if (email.length < 5 || email.length > 30) {
+        if (email.length < 6 || email.length > 30) {
             return false;
         } else {
             return true;
@@ -50,7 +50,7 @@ let passwordLengthChecker = (password) => {
     if (!password) {
         return false;
     } else {
-        if(password.length < 6 || password.length > 35) {
+        if(password.length < 8 || password.length > 35) {
             return false;
         } else {
             return true;
@@ -62,7 +62,7 @@ let validPassword = (password) => {
     if (!password) {
         return false;
     } else {
-        const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{6,35}$/);
+        const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/);
         return regExp.test(password);
     }
 };
@@ -78,7 +78,7 @@ const emailValidators = [
 
 const usernameValidators = [
     {
-        validator: usernameLengthChecker, message: 'Username must be between 5 and 12 characters'
+        validator: usernameLengthChecker, message: 'Username must be between 6 and 12 characters'
     },
     {
         validator: validUsername, message: 'Username cannot include any special characters'
@@ -87,7 +87,7 @@ const usernameValidators = [
 
 const passwordValidators = [
     {
-        validator: passwordLengthChecker, message: 'Password must be between 6 and 35 characters'
+        validator: passwordLengthChecker, message: 'Password must be between 8 and 35 characters'
     },
     {
         validator: validPassword, message: 'Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character'
