@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RegisterResponse } from './RegisterResponse'; // Or wherever it is..
+import { RegisterResponse } from './RegisterResponse';
+import { LoginResponse } from './LoginResponse';
 import { map } from 'rxjs/operators';
 
 
@@ -12,7 +13,9 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
 
-domain = "http://localhost:8080";
+  domain = "http://localhost:8080";
+  authToken;
+  user;
 
   constructor(
     private http: HttpClient
@@ -34,6 +37,19 @@ domain = "http://localhost:8080";
     let headers = new HttpHeaders();
     headers.append('content-type','application/json');
     return this.http.get<RegisterResponse>(this.domain + '/authentication/checkEmail/' + email, {headers:headers});
+  }
+
+  login(user) {
+    let headers = new HttpHeaders();
+    headers.append('content-type','application/json');
+    return this.http.post<LoginResponse>(this.domain + '/authentication/login', user, {headers:headers});
+  }
+
+  storeUserData(token, user) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
   }
 
 }
