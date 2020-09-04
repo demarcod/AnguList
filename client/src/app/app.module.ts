@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AuthGuard } from './components/guards/auth.guard';
+import { NotAuthGuard } from './components/guards/notauth.guard';
 
 
 function tokenGetter() {
@@ -43,7 +45,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     FlashMessagesModule.forRoot(),
     JwtModule.forRoot(JWT_Module_Options)
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
