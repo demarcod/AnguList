@@ -4,22 +4,21 @@ import { RegisterResponse } from './RegisterResponse';
 import { LoginResponse } from './LoginResponse';
 import { ProfileResponse } from './ProfileResponse';
 import { map } from 'rxjs/operators';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class AuthService {
-
 
   domain = "http://localhost:8080";
   authToken;
   user;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public jwtHelper: JwtHelperService
   ) { }
 
   registerUser(user) {
@@ -66,8 +65,13 @@ export class AuthService {
       'content-type': 'application/json',
       'authorization': this.authToken
     });
-    console.log();
+    console.log(this.authToken);
+    console.log(this.user);
     return this.http.get<ProfileResponse>(this.domain + '/authentication/profile', {headers:headers});
+  }
+
+  loggedIn() {
+    return !this.jwtHelper.isTokenExpired();
   }
 
 }

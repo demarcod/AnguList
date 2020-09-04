@@ -58,9 +58,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.messageClass= 'alert alert-success';
         this.message = data.message;
-        console.log(data.token);
-
-        console.log(data.username);
         this.authService.storeUserData(data.token, data.username);
         setTimeout(() => {
           this.router.navigate(['/profile']);

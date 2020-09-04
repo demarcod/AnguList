@@ -5,9 +5,9 @@
       </a>
       <a class="py-1 d-none d-md-inline-block" routerLink="/create">Create</a>
       <a class="py-1 d-none d-md-inline-block" href="#">Discover</a>
-      <a class="py-1 d-none d-md-inline-block" href="/profile">Profile</a>
-      <a class="py-1 d-none d-md-inline-block" href="/login">Login</a>
-      <a class="py-1 d-none d-md-inline-block" href="#" (click)="onLogoutClick()">Logout</a>
-      <a class="py-1 d-none d-md-inline-block" href="/register">Sign up</a>
+      <a *ngIf="loggedIn()" class="py-1 d-none d-md-inline-block" href="/profile">Profile</a>
+      <a *ngIf="!loggedIn()" class="py-1 d-none d-md-inline-block" href="/login">Login</a>
+      <a *ngIf="loggedIn()" class="py-1 d-none d-md-inline-block" href="#" (click)="onLogoutClick()">Logout</a>
+      <a *ngIf="!loggedIn()" class="py-1 d-none d-md-inline-block" href="/register">Sign up</a>
     </div>
   </nav>

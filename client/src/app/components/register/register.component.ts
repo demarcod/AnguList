@@ -152,7 +152,6 @@ export class RegisterComponent implements OnInit {
         this.emailMessage = data.message;
       }
       console.log(this.emailMessage);
-
     })
   }
 

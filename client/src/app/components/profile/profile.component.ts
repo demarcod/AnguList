@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
       JSON.stringify(profile.username);
       this.username = profile.username;
       this.email = profile.email;
-      console.log(profile.message);
     });
   }
 

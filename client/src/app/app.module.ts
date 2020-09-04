@@ -12,7 +12,18 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 
+
+function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: tokenGetter
+  }
+};
 
 @NgModule({
   declarations: [
@@ -29,7 +40,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    JwtModule.forRoot(JWT_Module_Options)
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -139,7 +139,7 @@ module.exports = (router) => {
                 if(!user) {
                     res.json({ success: false, message: 'User not found'});
                 } else {
-                    res.json({ success: true, username: user.username, email: user.email, message: 'hello' });
+                    res.json({ success: true, username: user.username, email: user.email});
                 }
             }
         });
